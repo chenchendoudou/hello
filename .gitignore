@@ -1,2 +1,11 @@
 *.out
 *.o
+
+# 1. 忽略所有没有后缀的文件
+*
+!*/
+!*.*
+
+# 2. 排除掉你想要保留的特定文件（如 Makefile 或 README）
+!Makefile
+!README
