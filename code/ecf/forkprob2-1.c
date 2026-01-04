@@ -6,10 +6,14 @@ void end(void)
     printf("2"); fflush(stdout);
 }
 
+
 int main() 
 {
-    if (Fork() == 0) 
+    if (Fork() == 0)
+    { 
 	atexit(end);//该子进程结束时，调用end函数
+    //执行 atexit(end)，注册了退出处理函数。关键点： 此时 P1 及其未来的子进程在退出时都会调用 end。
+    }
     if (Fork() == 0) {
 	printf("0"); fflush(stdout); 
     }
