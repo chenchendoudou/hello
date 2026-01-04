@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-
+//非阻塞等待（轮询）
 int main() {
     pid_t pid = fork();
 
