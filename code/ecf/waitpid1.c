@@ -13,6 +13,7 @@ int main()
 	    exit(100+i);                          //line:ecf:waitpid1:exit
 
     /* Parent reaps N children in no particular order */
+    //阻塞，等待所有的子线程结束
     while ((pid = waitpid(-1, &status, 0)) > 0) { //line:ecf:waitpid1:waitpid
 	if (WIFEXITED(status))                    //line:ecf:waitpid1:wifexited
 	    printf("child %d terminated normally with exit status=%d\n",
