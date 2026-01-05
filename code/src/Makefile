@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O1 -Wall
+CFLAGS = -g -O1 -Wall
 #CFLAGS = -O1 -Wall -DUSE_TSC
 INC = ../include
 LIB = ../lib
