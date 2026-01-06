@@ -4,8 +4,12 @@
 
 int main()
 {
-    if (!fork()) {
-        while(1);
+    if (!fork())
+    {
+        printf("hello,nice to meet you!\n");
+        while (1)
+            ;
     }
+    sleep(1);
     exit(0);
 }

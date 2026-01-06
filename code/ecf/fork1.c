@@ -2,7 +2,7 @@
 
 /* $begin fork1 */
 /* $begin wasidefork1 */
-int main() 
+int main()
 {
     Fork();
     printf("hello\n");
