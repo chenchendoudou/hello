@@ -54,11 +54,11 @@ PROGS = fragments.o\
 	pg\
 	pgchild\
 	hello\
+	rfork-driver\
 	hello-asm32\
 	hello-asm64\
 	jmpbuf\
 	rfork.o\
-	rfork-driver\
 	cmdline
 
 all: $(CSAPP_SRC)/csapp.o $(PROGS)
