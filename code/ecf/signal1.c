@@ -6,9 +6,15 @@ void handler1(int sig)
 {
     int olderrno = errno;
 
-    if ((waitpid(-1, NULL, 0)) < 0)
+    pid_t pid;
+    if ((pid = waitpid(-1, NULL, 0)) < 0)
         sio_error("waitpid error");
-    Sio_puts("Handler reaped child\n");
+    char str[20]; // 确保缓冲区足够大
+
+    // 将 num 格式化为字符串存入 str
+    snprintf(str, sizeof(str), "%d",pid); 
+    Sio_puts(str);
+    Sio_puts("  Handler reaped child\n");//reap 回收
     Sleep(1);
     errno = olderrno;
 }
