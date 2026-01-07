@@ -11,12 +11,13 @@ volatile long counter = 2;
 void handler1(int sig) 
 {
     sigset_t mask, prev_mask;
-
     Sigfillset(&mask);
     Sigprocmask(SIG_BLOCK, &mask, &prev_mask);  /* Block sigs */
     Sio_putl(--counter);
+    printf("\n");
     Sigprocmask(SIG_SETMASK, &prev_mask, NULL); /* Restore sigs */
 
+printf("进程 %d 收到信号\n", getpid());
     _exit(0);
 }
 
@@ -24,8 +25,8 @@ int main()
 {
     pid_t pid;
     sigset_t mask, prev_mask;
-
-    printf("%ld", counter);
+printf("进程 %d 收到信号\n", getpid());
+    printf("%ld\n", counter);
     fflush(stdout);
 
     signal(SIGUSR1, handler1);
@@ -37,7 +38,7 @@ int main()
 
     Sigfillset(&mask);
     Sigprocmask(SIG_BLOCK, &mask, &prev_mask);  /* Block sigs */
-    printf("%ld", ++counter);
+    printf("%ld\n", ++counter);
     Sigprocmask(SIG_SETMASK, &prev_mask, NULL); /* Restore sigs */
 
     exit(0);

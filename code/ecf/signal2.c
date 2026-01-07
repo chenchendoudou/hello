@@ -6,6 +6,7 @@ void handler2(int sig)
     int olderrno = errno;
     int static ci = 0;
     printf("第%d次进入handler2\n",++ci);
+    sleep(1);
     while (waitpid(-1, NULL, 0) > 0)
     {
         Sio_puts("Handler reaped child\n");

@@ -6,6 +6,8 @@ void handler2(int sig)
     pid_t pid;
     char buf[MAXBUF];
 
+    int static ci = 0;
+    printf("第%d次进入handler2\n",++ci);
     while ((pid = waitpid(-1, NULL, 0)) > 0)
     {
         snprintf(buf, MAXBUF, "Handler reaped child %d\n", (int)pid);
@@ -29,11 +31,13 @@ int main()
     /* Parent creates children */
     for (i = 0; i < 3; i++)
     {
+        //父进程不等待子进程的 Sleep 完成，它立即继续执行。
+        //所以hello from句，几乎三次一起出来。
         pid = Fork();
         if (pid == 0)
         {
             printf("Hello from child %d\n", (int)getpid());
-            Sleep(1);
+            Sleep(3);
             exit(0);
         }
     }
