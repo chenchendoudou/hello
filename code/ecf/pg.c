@@ -17,7 +17,7 @@ void handler(int sig)
 int main()
 {
     Signal(SIGINT, handler);
-    /*    Signal(SIGTSTP, handler);*/
+        Signal(SIGTSTP, handler);
     //Fork(): 创建了一个子进程。此时子进程是父进程的副本，PID 不同，但 PGID（进程组 ID）相同
     if (Fork() == 0)
     {

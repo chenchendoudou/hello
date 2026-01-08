@@ -44,6 +44,10 @@ int main(int argc, char **argv)
     while (1) {
         Sigprocmask(SIG_BLOCK, &mask_one, &prev_one); /* Block SIGCHLD */
         if ((pid = Fork()) == 0) { /* Child process */
+            /**
+             * 原因： 子进程会完全继承父进程的“信号屏蔽字”。如果在 Fork 前父进程阻塞了 SIGCHLD，子进程也会默认阻塞。
+必要性： 虽然子进程里马上要调 Execve 换掉自己，但为了代码的严谨性，子进程应该恢复到初始状态，确保它加载的新程序（如 /bin/date）能正常接收它自己该收的信号。
+             */
             Sigprocmask(SIG_SETMASK, &prev_one, NULL); /* Unblock SIGCHLD */
             Execve("/bin/date", argv, NULL);
         }
