@@ -9,6 +9,7 @@ PROGS = fragments.o\
 	sigsuspend\
 	orphan\
 	blockone\
+	procmask\
 	procmask1\
 	procmask2\
 	counterprob\

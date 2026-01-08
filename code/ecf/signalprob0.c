@@ -14,10 +14,10 @@ void handler1(int sig)
     Sigfillset(&mask);
     Sigprocmask(SIG_BLOCK, &mask, &prev_mask);  /* Block sigs */
     Sio_putl(--counter);
+printf("\n进程 %d 收到信号\n", getpid());
     printf("\n");
     Sigprocmask(SIG_SETMASK, &prev_mask, NULL); /* Restore sigs */
 
-printf("进程 %d 收到信号\n", getpid());
     _exit(0);
 }
 
@@ -33,6 +33,8 @@ printf("进程 %d 收到信号\n", getpid());
     if ((pid = Fork()) == 0) {
         while(1) {};
     }
+
+        printf("子进程pid=%d\n", pid);
     Kill(pid, SIGUSR1); 
     Waitpid(-1, NULL, 0);
 
